@@ -408,7 +408,7 @@ if __name__ == '__main__':
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'config-feedforward.txt')
     
-    # If we don´t have the model train we choose the run function. If we 
+    # If we don´t have the model trained we choose the run function. If we 
     # already have a trained genome, we use the test_best_ai function
     run(config_path)
     #test_best_ai(config_path)
