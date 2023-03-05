@@ -1,9 +1,13 @@
+"""
+This file holds the original game before the AI was applied
+For clarification about the code, check the NEAT-game.py file
+"""
+
 import pygame
 import os
 import random
 
 pygame.font.init()
-
 
 bg_img = pygame.transform.scale_by(pygame.image.load(os.path.join("imgs","1709.jpg")),1/5)
 boy_img_left = pygame.transform.scale_by(pygame.image.load(os.path.join("imgs","flint.png")),1/4)
@@ -60,11 +64,6 @@ class Meatball:
 
     
     def collide(self, character):
-        """
-        returns if a point is colliding with the meatball
-        :param bird: Boy object
-        :return: Bool
-        """
         character_mask = character.get_mask()
         meatball_mask = self.get_mask()
         offset = (self.x-character.x, self.y-character.y)
@@ -82,7 +81,6 @@ def draw_window(win, character, obj, score):
     character.draw(win)
     obj.draw(win)
 
-    # score
     score_label = STAT_FONT.render("Score: " + str(score),1,(255,255,255))
     win.blit(score_label, (WIN_WIDTH - score_label.get_width() - 15, 10))
 
