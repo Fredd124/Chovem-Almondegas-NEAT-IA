@@ -277,6 +277,7 @@ def eval_genomes(genomes, config):
 
 
 def use_best_genome(genome, config):
+    global  gen
     gen += 1
 
     # Recreate the neural network for the previous best genome
@@ -394,7 +395,7 @@ def test_best_ai(config_file):
     
     # Opens the previously saved best genome
     # "best.pickle" currently holds a AI previously trained
-    with open("best2.pickle", "rb") as f:
+    with open("best.pickle", "rb") as f:
         winner = pickle.load(f)
 
     use_best_genome(winner,config)
@@ -410,5 +411,5 @@ if __name__ == '__main__':
     
     # If we don´t have the model train we choose the run function. If we 
     # already have a trained genome, we use the test_best_ai function
-    run(config_path)
-    #test_best_ai(config_path)
+    #run(config_path)
+    test_best_ai(config_path)
