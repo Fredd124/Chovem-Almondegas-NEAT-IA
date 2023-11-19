@@ -18,9 +18,7 @@ WIN_HEIGHT = bg_img.get_height()
 STAT_FONT = pygame.font.SysFont("comicsans", 50)
 
 # Used to keep track of generations number
-gen = 0
-
-
+GEN = 0
 
 class Boy:
     """
@@ -70,8 +68,6 @@ class Boy:
         :return: boy mask
         """
         return pygame.mask.from_surface(self.img)
-
-
 
 class Meatball:
     """
@@ -132,8 +128,6 @@ class Meatball:
 
         return False
     
-
-
 def draw_window(win, boys, obj, score, gen, alive):
     """
     draws the windows for the main game loop
@@ -168,18 +162,19 @@ def draw_window(win, boys, obj, score, gen, alive):
     
     pygame.display.update()
 
-
-
 def eval_genomes(genomes, config):
     """
     runs the simulation of the current population of
     boys and sets their fitness based on the score they
-    get in the game.
+    get in the game
+    :param genomes: A list of tuples, each containing a genome ID and a genome object. 
+    :param config: An object containing NEAT configuration settings. 
+    :return: None
     """
 
     # Used to keep track of the current generation number
-    global gen
-    gen += 1
+    global GEN
+    GEN += 1
 
     # Start by creating lists holding the genome itself, the
     # neural network associated with the genome and the
@@ -246,8 +241,8 @@ def eval_genomes(genomes, config):
             for g in ge:
                 g.fitness += 2
     
-        # Check for collision with each boy and the meatball. Penalize those who have collided
-        # and remove them from the boys "alive"
+        # Check for collision with each boy and the meatball. Penalize those 
+        # who have collided and remove them from the boys "alive"
         for x, boy in enumerate(boys):
             if meatball.collide(boy) == True:
                 ge[x].fitness -= 1
@@ -255,8 +250,8 @@ def eval_genomes(genomes, config):
                 nets.pop(x)
                 ge.pop(x)
 
-        # If a boy reaches the end of the map, it is penalized and removed from the list
-        # of boys "alive"
+        # If a boy reaches the end of the map, it is penalized and removed 
+        # from the list of boys "alive"
         for x, boy in enumerate(boys):
             if boy.x >= WIN_WIDTH-boy_img_left.get_width() or boy.x <= 0:
                 ge[x].fitness -= 5
@@ -272,13 +267,20 @@ def eval_genomes(genomes, config):
         meatball.move(vel)
 
         # Draw the pygame window
-        draw_window(win, boys, meatball,score, gen, len(boys))
+        draw_window(win, boys, meatball,score, GEN, len(boys))
         
-
-
 def use_best_genome(genome, config):
-    global  gen
-    gen += 1
+    """
+    runs the simulation of the current population of
+    boys and sets their fitness based on the score they
+    get in the game
+    :param genome: A tuple containing a genome ID and a genome object. 
+    :param config: An object containing NEAT configuration settings. 
+    :return: None
+    """
+
+    global  GEN
+    GEN += 1
 
     # Recreate the neural network for the previous best genome
     net = neat.nn.FeedForwardNetwork.create(genome,config)
@@ -349,19 +351,18 @@ def use_best_genome(genome, config):
             break
 
         meatball.move(vel)
-        draw_window(win, boys, meatball,score, gen, len(boys))
+        draw_window(win, boys, meatball,score, GEN, len(boys))
 
-
-
-def run(config_file):
+def run(config_path):
     """
     runs the NEAT algorithm to train a neural network to play flappy bird.
-    :param config_file: location of config file
+    :param config_path: location of config file
     :return: None
     """
+
     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction,
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
-                         config_file)
+                         config_path)
 
     # Create the population, which is the top-level object for a NEAT run.
     p = neat.Population(config)
@@ -381,8 +382,6 @@ def run(config_file):
     with open("best.pickle", "wb") as f:
         pickle.dump(winner, f)
 
-
-
 def test_best_ai(config_file):
     """
     runs the NEAT algorithm to train a neural network to play flappy bird.
@@ -400,8 +399,6 @@ def test_best_ai(config_file):
 
     use_best_genome(winner,config)
 
-
-
 if __name__ == '__main__':
     # Determine path to configuration file. This path manipulation is
     # here so that the script will run successfully regardless of the
@@ -411,5 +408,5 @@ if __name__ == '__main__':
     
     # If we don´t have the model trained we choose the run function. If we 
     # already have a trained genome, we use the test_best_ai function
-    #run(config_path)
-    test_best_ai(config_path)
+    run(config_path)
+    #test_best_ai(config_path)

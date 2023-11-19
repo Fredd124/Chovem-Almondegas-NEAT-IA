@@ -2,7 +2,6 @@
 This file holds the original game before the AI was applied
 For clarification about the code, check the NEAT-game.py file
 """
-
 import pygame
 import os
 import random
@@ -17,8 +16,6 @@ object_img = pygame.transform.scale_by(pygame.image.load(os.path.join("imgs","po
 WIN_WIDTH = bg_img.get_width()
 WIN_HEIGHT = bg_img.get_height()
 STAT_FONT = pygame.font.SysFont("comicsans", 50)
-
-
 WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
 class Boy:
@@ -42,7 +39,6 @@ class Boy:
 
     def get_mask(self):
         return pygame.mask.from_surface(self.img)
-
 
 class Meatball:
     
@@ -75,7 +71,6 @@ class Meatball:
 
         return False
     
-
 def draw_window(win, character, obj, score):
     win.blit(bg_img, (0,0))
     character.draw(win)
@@ -85,7 +80,6 @@ def draw_window(win, character, obj, score):
     win.blit(score_label, (WIN_WIDTH - score_label.get_width() - 15, 10))
 
     pygame.display.update()
-
 
 def main():
     character = Boy(WIN_WIDTH//2,WIN_HEIGHT-200)
@@ -127,4 +121,5 @@ def main():
     pygame.quit()
     quit()
 
-main()
+if __name__ == '__main__':
+    main()
