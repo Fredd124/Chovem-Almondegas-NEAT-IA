@@ -4,7 +4,7 @@ NEAT-GAME is an AI-driven game developed in Python, utilizing the NeuroEvolution
 
 ## Overview
 
-The game features a character (the "Boy") who must avoid obstacles (meatballs) falling from the sky. The core of this project is to train an AI using the NEAT algorithm to play the game efficiently. The AI receives input from the game state and decides on actions to avoid obstacles. With each generation, the AI's performance is evaluated, and the most successful neural network topologies are used to breed the next generation.
+The game features a character (the "Boy") who must avoid obstacles (meatballs) falling from the sky, inspired by the movie ["Cloudy with a Chance of Meatballs"](https://en.wikipedia.org/wiki/Cloudy_with_a_Chance_of_Meatballs_(film)). The core of this project is to train an AI using the NEAT algorithm to play the game efficiently. The AI receives input from the game state and decides on actions to avoid obstacles. With each generation, the AI's performance is evaluated, and the most successful neural network topologies are used to breed the next generation.
 
 ## Getting Started
 
