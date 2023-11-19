@@ -1,10 +1,10 @@
 # NEAT-GAME
 
-NEAT-GAME is an AI-driven game developed in Python, utilizing the NeuroEvolution of Augmenting Topologies (NEAT) algorithm. This project draws inspiration from "Python Flappy Bird AI Tutorial (with NEAT)" by Tech With Tim on YouTube.
+NEAT-GAME is an AI-driven game developed in Python, utilizing the NeuroEvolution of Augmenting Topologies (NEAT) algorithm. This project draws inspiration from ["Python Flappy Bird AI Tutorial (with NEAT)" by Tech With Tim on YouTube](https://www.youtube.com/watch?v=MMxFDaIOHsE&list=PLzMcBGfZo4-lwGZWXz5Qgta_YNX3_vLS2).
 
 ## Overview
 
-The game features a character (the "Boy") who must avoid obstacles (meatballs) falling from the sky. The core of this project is to train an AI using the NEAT algorithm to play the game efficiently. The AI evolves through generations, learning to dodge obstacles better with each iteration.
+The game features a character (the "Boy") who must avoid obstacles (meatballs) falling from the sky. The core of this project is to train an AI using the NEAT algorithm to play the game efficiently. The AI receives input from the game state and decides on actions to avoid obstacles. With each generation, the AI's performance is evaluated, and the most successful neural network topologies are used to breed the next generation.
 
 ## Getting Started
 
@@ -41,10 +41,5 @@ The game features a character (the "Boy") who must avoid obstacles (meatballs) f
 
 ## Customization
 
-  * AI configurations can be adjusted in config-feedforward.txt. Parameters like population size, fitness criteria, and network topology can be tweaked here.
-  * To understand the configuration settings, refer to the [NEAT documentation](https://neat-python.readthedocs.io/en/latest/)
-
-## How It Works
-
-  The game utilizes Pygame for rendering and handling game mechanics. The NEAT algorithm, implemented through the NEAT-Python library, is used to train an AI to play the game. The AI receives input from the game state and decides on actions to avoid obstacles. With each generation, the AI's performance is evaluated, and the most successful neural network topologies are used to breed the next generation.
-
+  * AI configurations can be adjusted in config-feedforward.txt. Parameters like population size can be tweaked here.
+  * To further understandment of the configuration settings, refer to the [NEAT documentation](https://neat-python.readthedocs.io/en/latest/)
